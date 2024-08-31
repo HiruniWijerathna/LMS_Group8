@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+
 <?php
 include './db.php'; // Ensure this path is correct relative to the location of your file
 
