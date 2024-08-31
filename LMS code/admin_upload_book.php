@@ -32,29 +32,17 @@ $books = $stmt->fetchAll();
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Admin Home</h1>
-    <form method="POST">
-        <button type="submit" name="logout">Logout</button>
-    </form>
+    
     <h2>Upload Book</h2>
-    <form action="admin_upload_book.php" method="GET">
-        <button type="submit">Upload Book</button>
+    <form action="upload_book.php" method="POST" enctype="multipart/form-data">
+        <label>Book Title: <input type="text" name="title" required></label>
+        <label>Keywords: <input type="text" name="keywords"></label>
+        <label>File: <input type="file" name="file" required></label>
+        <label>Image: <input type="file" name="image" required></label>
+        <button type="submit">Upload</button>
     </form>
-
-  
   
    
-    <h2>Manage Users</h2>
-    <form action="manage_users.php" method="GET">
-        <button type="submit">Manage Users</button>
-    </form>
-    <h2>View Book Details</h2>
-    <form action="admin_view_book.php" method="GET">
-        <button type="submit">View Book</button>
-    </form>
-    <h2>User Book List</h2>
-    <form action="user_book_list.php" method="GET">
-        <button type="submit">View User Book List</button>
-    </form>
+ 
 </body>
 </html>
