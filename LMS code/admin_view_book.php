@@ -335,7 +335,7 @@ $books = $stmt->fetchAll();
 .book-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px; /* Increased gap for better spacing */
+    gap: 15px; /* Increased gap for better spacing */
     justify-content: center; /* Center the book cards */
     text-align: center;
     
@@ -375,7 +375,7 @@ $books = $stmt->fetchAll();
 }
 
 .book-card img {
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 15px;
