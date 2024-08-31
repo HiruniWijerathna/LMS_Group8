@@ -11,7 +11,8 @@ try {
 
     // Create database if not exists
     $pdo->exec("CREATE DATABASE IF NOT EXISTS $db");
-    echo "Database '$db' created or already exists.<br>";
+    // Commented out the echo line that displays database creation message
+    // echo "Database '$db' created or already exists.<br>";
 
     // Select the database
     $pdo->exec("USE $db");
@@ -59,7 +60,8 @@ try {
     // Create tables
     foreach ($tables as $table => $sql) {
         $pdo->exec($sql);
-        echo "Table '$table' has been created or already exists.<br>";
+        // Commented out the echo line that displays table creation message
+        // echo "Table '$table' has been created or already exists.<br>";
     }
 
     // Add new columns to profiles table if they don't already exist
@@ -71,7 +73,8 @@ try {
 
     // Execute ALTER TABLE query
     $pdo->exec($alterProfilesTable);
-    echo "Profiles table columns updated or already exist.<br>";
+    // Commented out the echo line that displays column update message
+    // echo "Profiles table columns updated or already exist.<br>";
 
 } catch (PDOException $e) {
     die("Could not connect to the database: " . $e->getMessage());
