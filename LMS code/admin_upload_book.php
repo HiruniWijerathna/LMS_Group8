@@ -62,8 +62,17 @@ $books = $stmt->fetchAll();
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 50px;
+        
             color: #ecf0f1;
+            margin-top: 5px;
+            text-align: center;
+            margin-left: 10%;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 24px; /* Smaller font size */
+            font-weight: bold;
+            color: red; /* Change color to red */
+            -webkit-text-stroke: 1px black; /* Smaller text stroke */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Lighter shadow effect */
         }
 
         /* Navigation Menu */
@@ -181,6 +190,96 @@ $books = $stmt->fetchAll();
             margin: 0;
         }
 
+        /* Heading Styling */
+h2 {
+    font-size: 24px; /* Adjust size as needed */
+    color: #2c3e50; /* Dark color for contrast */
+    margin-top: 0;
+    text-align: center; /* Center the text horizontally */
+    margin-bottom: 20px; /* Space below the heading */
+    font-weight: bold; /* Make the heading bold */
+    border-bottom: 2px solid #428d8d; /* Underline for emphasis */
+    padding-bottom: 10px; /* Space between text and underline */
+}
+
+        /* Content Container Styling */
+.content-container {
+    margin-left: 25%;
+    padding: 20px;
+    padding-top: 10%;
+    padding-right: 5%;
+}
+
+/* Form Section Styling */
+.section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Form Heading */
+.section h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #2c3e50;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form Label */
+form label {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form Input Fields */
+form input[type="text"],
+form input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* Form Button */
+form button {
+    background-color: #428d8d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #34495e;
+}
+
+/* List Items */
+form ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+form ul li {
+    margin-bottom: 15px;
+}
+
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .sidebar-container {
@@ -203,19 +302,19 @@ $books = $stmt->fetchAll();
 <body>
     <div class="sidebar-container">
         <!-- Brand Section -->
-        <div class="brand">EpicReads</div>
+       
 
         <!-- Navigation Menu -->
         <nav class="nav-menu">
             <ul>
-                <li class="active">
-                    <a href="home.php">
+                <li >
+                    <a href="admin_home.php">
                         <span class="icon">🏠</span> Home
                     </a>
                 </li>
             </ul>
             <ul>
-                <li>
+                <li class="active">
                     <a href="admin_upload_book.php">
                         <span class="icon">📚</span> Upload Book
                     </a>
@@ -256,19 +355,21 @@ $books = $stmt->fetchAll();
 
     <!-- Content Section -->
     <div class="content-container">
-        <!-- Overview Section -->
-        <div class="section">
-            <h2>Upload Book</h2>
-            <form action="upload_book.php" method="POST" enctype="multipart/form-data">
-               <ul> 
-                <li></li><label>Book Title: <input type="text" name="title" required></label></li>
+    <!-- Overview Section -->
+    <div class="section">
+        <h2>Upload Book</h2>
+        <form action="upload_book.php" method="POST" enctype="multipart/form-data">
+            <ul>
+                <li><label>Book Title: <input type="text" name="title" required></label></li>
                 <li><label>Keywords: <input type="text" name="keywords"></label></li>
-                <li><label>File: <input type="file" name="file" required></label></li>
+                <li><label>Book PDF: <input type="file" name="file" required></label></li>
                 <li><label>Image: <input type="file" name="image" required></label></li>
-                <li><button type="submit">Upload</button>
-                </ul>
-            </form>
-        </div>
+                <li><button type="submit">Upload</button></li>
+            </ul>
+        </form>
+    </div>
+</div>
+
 
         <!-- Other Sections -->
         <!-- Add additional sections as needed -->

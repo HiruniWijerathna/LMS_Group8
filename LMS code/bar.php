@@ -1,30 +1,9 @@
-<?php include 'header2.php'; ?>
-
-<?php
-session_start();
-if (!isset($_SESSION['admin_id'])) {
-    header('Location: admin_login.php');
-    exit;
-}
-
-require 'db.php';
-
-if (isset($_POST['delete_user'])) {
-    $user_id = $_POST['user_id'];
-    $stmt = $pdo->prepare("DELETE FROM users WHERE id = :user_id");
-    $stmt->execute(['user_id' => $user_id]);
-}
-
-// Fetch users
-$stmt = $pdo->query("SELECT * FROM users WHERE user_type = 'user'");
-$users = $stmt->fetchAll();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Users</title>
+    <title>side bar</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
           /* Sidebar Container */
@@ -142,124 +121,9 @@ $users = $stmt->fetchAll();
 
 
     </style>
-    <style>
-        body {
-            background-image: url('image/home.png'); /* Path to your background image */
-            background-size: cover; /* Cover the entire viewport */
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f7fa;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    padding-left: 20%;
-    padding-top: 10%;
-}
-h2 {
-    font-size: 24px; /* Adjust size as needed */
-    color: #2c3e50; /* Dark color for contrast */
-    margin-top: 0;
-    text-align: center; /* Center the text horizontally */
-    margin-bottom: 20px; /* Space below the heading */
-    font-weight: bold; /* Make the heading bold */
-    border-bottom: 2px solid #428d8d; /* Underline for emphasis */
-    padding-bottom: 10px; /* Space between text and underline */
-}
-
-/* Logout Button */
-form[method="POST"] {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-form[method="POST"] button {
-    padding: 10px 20px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-}
-
-form[method="POST"] button:hover {
-    background-color: #c82333;
-}
-
-/* Table Styles */
-table {
-    width: 80%;
-    border-collapse: collapse;
-    margin-bottom: 50px;
-    background-color: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-table th, table td {
-    padding: 15px;
-    text-align: left;
-    font-size: 1.1em;
-}
-
-table th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-}
-
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-table tr:hover {
-    background-color: #f1f4f9;
-}
-
-table td {
-    border-bottom: 1px solid #ddd;
-}
-
-/* Remove Button */
-table form button {
-    padding: 8px 12px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-table form button:hover {
-    background-color: #c82333;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    table {
-        width: 100%;
-    }
-
-    table th, table td {
-        font-size: 0.9em;
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 28px;
-    }
-}
-
-    </style>
 </head>
-
 <body>
+
     <!-- Sidebar -->
     <div class="sidebar-container">
         <!-- Brand Section -->
@@ -282,14 +146,14 @@ table form button:hover {
                 </li>
             </ul>
             <ul>
-                <li >
+                <li class="active">
                     <a href="admin_view_book.php">
                         <span class="icon">📖</span> View Book
                     </a>
                 </li>
             </ul>
             <ul>
-                <li class="active">
+                <li>
                     <a href="manage_users.php">
                         <span class="icon">👤</span> Manage Users
                     </a>
@@ -314,27 +178,5 @@ table form button:hover {
         </nav>
     </div>
 
-    
-    <h2>Manage Users</h2>
-    
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-        <?php foreach ($users as $user): ?>
-        <tr>
-            <td><?php echo htmlspecialchars($user['name']); ?></td>
-            <td><?php echo htmlspecialchars($user['email']); ?></td>
-            <td>
-                <form method="POST" style="display:inline;">
-                    <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
-                    <button type="submit" name="delete_user">Remove</button>
-                </form>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-</body>
+    </body>
 </html>

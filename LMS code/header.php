@@ -9,9 +9,7 @@
 <body>
     <header class="header-bar">
         <div class="logo">
-            <a href="home.php">
-                <img src="image/head.png" alt="Logo">
-            </a>
+        <div class="brand">EpicReads</div>
         </div>
         <nav>
             <ul class="nav-links">
