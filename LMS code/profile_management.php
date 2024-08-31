@@ -84,41 +84,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     <title>Manage Profile</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('image/book12.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
         .profile-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 100%;
             max-width: 600px;
-            margin: 0 auto;
         }
         .profile-form label {
             display: block;
             margin: 10px 0 5px;
+            color: #555;
+            font-weight: bold;
         }
         .profile-form input[type="text"],
         .profile-form input[type="file"] {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
         .profile-form button {
-            padding: 10px 15px;
-            background-color: #007bff;
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(45, 172, 143, 1);
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
         }
         .profile-form button:hover {
-            background-color: #0056b3;
+            background-color: #2980b9;
         }
         .profile-picture img {
             max-width: 150px;
             border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
-    <h1>Manage Profile</h1>
-
     <div class="profile-container">
+        <h1>Manage Profile</h1>
         <form method="POST" enctype="multipart/form-data" class="profile-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" required>

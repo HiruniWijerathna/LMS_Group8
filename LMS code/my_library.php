@@ -34,7 +34,41 @@ $books = $stmt->fetchAll();
     <title>My Library</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f5f5f5;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .sidebar button {
+            width: 150px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: rgba(45, 172, 143, 1);
+        }
+
         .book-container {
+            margin-left: 240px;
+            padding: 20px;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
@@ -42,11 +76,21 @@ $books = $stmt->fetchAll();
         }
         .book-card {
             border: 1px solid #ddd;
-            padding: 20px;
+            background-color: #fff;
             border-radius: 10px;
-            width: 300px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 200px;
+            height: 400px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        .book-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
         }
         .book-card img {
             max-width: 100%;
@@ -56,42 +100,57 @@ $books = $stmt->fetchAll();
         }
         .book-card h2 {
             margin: 0 0 10px;
-            font-size: 20px;
+            font-size: 18px;
+            color: #2c3e50;
+            flex-grow: 1;
         }
         .book-card p {
             margin: 10px 0;
+            color: #555;
+            font-size: 14px;
+            flex-grow: 1;
+        }
+        .book-card .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
         }
         .book-card a,
         .book-card button {
-            display: block;
-            color: #007bff;
+            color: rgba(45, 172, 143, 1);
             text-decoration: none;
             font-weight: bold;
-            margin-top: 10px;
             background-color: transparent;
             border: none;
             cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
         }
         .book-card a:hover,
         .book-card button:hover {
-            text-decoration: underline;
-        }
-        .back-link {
-            display: inline-block;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
+            color: #2980b9;
             text-decoration: none;
-            color: #333;
-            margin-bottom: 20px;
+        }
+        .book-card button {
+            background-color: rgba(206, 95, 96, 0.92);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .book-card button:hover {
+            background-color: rgba(45, 172, 143, 1);
         }
     </style>
 </head>
 <body>
-    <h1>My Library</h1>
-
-    <!-- Back to Search Results Page Link -->
-    <a href="search_book.php" class="back-link">Back to Search Results</a>
+    <div class="sidebar">
+        <!-- Back to Home Page Button -->
+        <a href="user_home.php" class="back-link">
+            <button>Back to Home</button>
+        </a>
+    </div>
 
     <div class="book-container">
         <?php if (count($books) > 0): ?>
@@ -102,10 +161,12 @@ $books = $stmt->fetchAll();
                 <?php endif; ?>
                 <h2><?php echo htmlspecialchars($book['title']); ?></h2>
                 <p><strong>Keywords:</strong> <?php echo htmlspecialchars($book['keywords']); ?></p>
-                <form method="POST" style="display:inline;">
-                    <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                    <button type="submit" name="remove_book">Remove</button>
-                </form>
+                <div class="buttons">
+                    <form method="POST" style="display:inline;">
+                        <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                        <button type="submit" name="remove_book">Remove</button>
+                    </form>
+                </div>
             </div>
             <?php endforeach; ?>
         <?php else: ?>
