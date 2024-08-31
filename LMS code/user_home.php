@@ -1,4 +1,4 @@
-<?php include 'header2.php'; ?>
+<?php include 'header3.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +15,8 @@
             font-family: Arial, sans-serif;
             background-color: #ecf0f1;
         }
+
+        
 
         /* Sidebar Container */
         .sidebar-container {
@@ -140,8 +142,7 @@
 <body>
 
 <div class="sidebar-container">
-    <!-- Brand Section -->
-    <div class="brand">EpicReads</div>
+  
 
     <!-- Navigation Menu -->
     <nav class="nav-menu">
