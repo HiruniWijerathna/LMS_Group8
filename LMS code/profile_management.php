@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Profile</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/user_home.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -147,6 +147,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     </style>
 </head>
 <body>
+<div class="sidebar-container">
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <ul>
+            <li>
+                <a href="user_home.php">
+                    <span class="icon">🏠</span> Home
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="all_books.php">
+                    <span class="icon">📚</span> View All Books
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="my_library.php">
+                    <span class="icon">📖</span> My Library
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li  class="active">
+                <a href="profile_management.php">
+                    <span class="icon">👤</span> Manage Profile
+                </a>
+            </li>
+        </ul>
+        <!-- Separator Line -->
+        <div class="separator-line"></div>
+        <ul>
+            <li>
+                <a href="logout.php">
+                    <span class="icon">🚪</span> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
     <div class="profile-container">
         <h1>Manage Profile</h1>
         <form method="POST" enctype="multipart/form-data" class="profile-form">

@@ -32,7 +32,7 @@ $books = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Library</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/user_home.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,32 +42,9 @@ $books = $stmt->fetchAll();
             color: #333;
             display: flex;
         }
-        .sidebar {
-            width: 200px;
-            background-color: #f5f5f5;
-            padding: 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-        .sidebar button {
-            width: 150px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            background-color: rgba(45, 172, 143, 1);
-        }
 
         .book-container {
-            margin-left: 240px;
+            margin-left: 270px;
             padding: 20px;
             display: flex;
             flex-wrap: wrap;
@@ -145,12 +122,49 @@ $books = $stmt->fetchAll();
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <!-- Back to Home Page Button -->
-        <a href="user_home.php" class="back-link">
-            <button>Back to Home</button>
-        </a>
-    </div>
+<div class="sidebar-container">
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <ul>
+            <li>
+                <a href="user_home.php">
+                    <span class="icon">🏠</span> Home
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="all_books.php">
+                    <span class="icon">📚</span> View All Books
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li class="active">
+                <a href="my_library.php">
+                    <span class="icon">📖</span> My Library
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="profile_management.php">
+                    <span class="icon">👤</span> Manage Profile
+                </a>
+            </li>
+        </ul>
+        <!-- Separator Line -->
+        <div class="separator-line"></div>
+        <ul>
+            <li>
+                <a href="logout.php">
+                    <span class="icon">🚪</span> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
     <div class="book-container">
         <?php if (count($books) > 0): ?>
