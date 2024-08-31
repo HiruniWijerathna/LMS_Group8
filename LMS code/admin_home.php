@@ -49,12 +49,20 @@ $books = $stmt->fetchAll();
         <tr>
             <th>Title</th>
             <th>Keywords</th>
+            <th>Image</th>
             <th>Action</th>
         </tr>
         <?php foreach ($books as $book): ?>
         <tr>
             <td><?php echo htmlspecialchars($book['title']); ?></td>
             <td><?php echo htmlspecialchars($book['keywords']); ?></td>
+            <td>
+                <?php if (!empty($book['image_path'])): ?>
+                    <img src="<?php echo htmlspecialchars($book['image_path']); ?>" alt="Book Image" style="max-width: 100px;">
+                <?php else: ?>
+                    No Image
+                <?php endif; ?>
+            </td>
             <td>
                 <a href="view_book.php?id=<?php echo $book['id']; ?>">View</a>
                 <form method="POST" style="display:inline;">
@@ -68,6 +76,10 @@ $books = $stmt->fetchAll();
     <h2>Manage Users</h2>
     <form action="manage_users.php" method="GET">
         <button type="submit">Manage Users</button>
+    </form>
+    <h2>User Book List</h2>
+    <form action="user_book_list.php" method="GET">
+        <button type="submit">View User Book List</button>
     </form>
 </body>
 </html>

@@ -2,17 +2,17 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require 'db.php';
-    
+    require 'db.php';  // Ensure this path is correct
+
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Prepare and execute the SQL query
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email AND password = :password AND user_type = 'user'");
-    $stmt->execute(['email' => $email, 'password' => md5($password)]);
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email AND user_type = 'user'");
+    $stmt->execute(['email' => $email]);
     $user = $stmt->fetch();
 
-    if ($user) {
+    if ($user && password_verify($password, $user['password'])) {
         // User credentials are correct
         $_SESSION['user_id'] = $user['id'];
         header('Location: user_home.php');

@@ -19,6 +19,16 @@
         <button type="submit">View All Books</button>
     </form>
 
+    <!-- My Library Button -->
+    <form method="GET" action="my_library.php" style="display: inline;">
+        <button type="submit">My Library</button>
+    </form>
+
+    <!-- Manage Profile Button -->
+    <form method="GET" action="profile_management.php" style="display: inline;">
+        <button type="submit">Manage Profile</button>
+    </form>
+
     <!-- Search Form -->
     <form method="POST" action="search_book.php">
         <label>Search Book Title: <input type="text" name="search_query" required></label>

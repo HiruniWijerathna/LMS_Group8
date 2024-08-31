@@ -1,25 +1,37 @@
 <?php
+session_start();
 require 'db.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $search_query = $_POST['search_query'];
-
-    // Fetch books matching the search query
-    $stmt = $pdo->prepare("SELECT * FROM books WHERE title LIKE :title");
-    $stmt->execute(['title' => '%' . $search_query . '%']);
-    $books = $stmt->fetchAll();
-} else {
-    // Redirect if not a POST request
-    header('Location: user_home.php');
+if (!isset($_SESSION['user_id'])) {
+    header('Location: user_login.php');
     exit;
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_book'])) {
+    $user_id = $_SESSION['user_id'];
+    $book_id = $_POST['book_id'];
+
+    // Remove book from the user's library
+    $stmt = $pdo->prepare("DELETE FROM user_books WHERE user_id = :user_id AND book_id = :book_id");
+    $stmt->execute(['user_id' => $user_id, 'book_id' => $book_id]);
+}
+
+// Fetch books in the user's library
+$user_id = $_SESSION['user_id'];
+$stmt = $pdo->prepare("
+    SELECT b.* FROM books b
+    JOIN user_books ub ON b.id = ub.book_id
+    WHERE ub.user_id = :user_id
+");
+$stmt->execute(['user_id' => $user_id]);
+$books = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
+    <title>My Library</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
         .book-container {
@@ -76,17 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-    <h1>Search Results</h1>
-    <form method="POST" action="search_book.php">
-        <label>Search Book Title: <input type="text" name="search_query" required value="<?php echo htmlspecialchars($search_query); ?>"></label>
-        <button type="submit">Search</button>
-    </form>
+    <h1>My Library</h1>
 
-    <!-- Back to Home Page Link -->
-    <a href="user_home.php" class="back-link">Back to Home</a>
+    <!-- Back to Search Results Page Link -->
+    <a href="search_book.php" class="back-link">Back to Search Results</a>
 
     <div class="book-container">
-        <?php if (isset($books) && count($books) > 0): ?>
+        <?php if (count($books) > 0): ?>
             <?php foreach ($books as $book): ?>
             <div class="book-card">
                 <?php if (!empty($book['image_path'])): ?>
@@ -94,15 +102,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
                 <h2><?php echo htmlspecialchars($book['title']); ?></h2>
                 <p><strong>Keywords:</strong> <?php echo htmlspecialchars($book['keywords']); ?></p>
-                <a href="view_book.php?id=<?php echo $book['id']; ?>" target="_blank">View</a>
-                <form action="add_to_library.php" method="POST" style="display:inline;">
+                <form method="POST" style="display:inline;">
                     <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                    <button type="submit">Add to Library</button>
+                    <button type="submit" name="remove_book">Remove</button>
                 </form>
             </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <div class="book-card">No books found.</div>
+            <div class="book-card">No books in your library.</div>
         <?php endif; ?>
     </div>
 </body>
