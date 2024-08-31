@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+register.css
+
+>>>>>>> 100a8c047c384c60f5714ee3cb042bd5ffe77095
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -108,5 +113,10 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 
 .login-link:hover {
+<<<<<<< HEAD
     text-decoration: none;
 }
+=======
+    text-decoration: none;
+}
+>>>>>>> 100a8c047c384c60f5714ee3cb042bd5ffe77095

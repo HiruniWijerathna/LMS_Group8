@@ -13,6 +13,8 @@
             font-family: Arial, sans-serif;
         }
 
+        
+
         /* Header Bar Styling */
         .header-bar {
             display: flex;
@@ -28,6 +30,8 @@
             width: 100%;
             z-index: 1000;
         }
+
+        
 
         .logo img {
             height: 40px; /* Adjust logo size */
@@ -116,9 +120,7 @@
 <body>
     <header class="header-bar">
         <div class="logo">
-            <a href="home.php">
-                <img src="image/head.png" alt="Logo">
-            </a>
+        <div class="brand">EpicReads</div>
         </div>
         <nav>
            
