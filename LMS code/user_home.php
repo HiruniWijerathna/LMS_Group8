@@ -1,4 +1,4 @@
-
+<?php include 'header3.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +8,22 @@
     <link rel="stylesheet" href="css/user_home.css">
 </head>
 <body>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
 
+        body {
+            background-image: url('image/Book1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 <div class="sidebar-container">
 
     <!-- Navigation Menu -->

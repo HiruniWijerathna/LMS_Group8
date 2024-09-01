@@ -1,4 +1,5 @@
 <?php
+include 'header3.php'; 
 session_start();
 require 'db.php';
 
@@ -41,15 +42,19 @@ $books = $stmt->fetchAll();
             padding: 0;
             color: #333;
             display: flex;
+            flex-direction: column;
         }
-
+       
         .book-container {
-            margin-left: 270px;
-            padding: 20px;
+            margin-top: -5px; /* Adjust this value to match the height of the header */
             display: flex;
             flex-wrap: wrap;
+            padding-left: 20%;
             gap: 20px;
             justify-content: center;
+            background-color: #fff;
+            flex-grow: 1;
+            
         }
         .book-card {
             border: 1px solid #ddd;
@@ -123,7 +128,6 @@ $books = $stmt->fetchAll();
 </head>
 <body>
 <div class="sidebar-container">
-
     <!-- Navigation Menu -->
     <nav class="nav-menu">
         <ul>
@@ -165,7 +169,6 @@ $books = $stmt->fetchAll();
         </ul>
     </nav>
 </div>
-
     <div class="book-container">
         <?php if (count($books) > 0): ?>
             <?php foreach ($books as $book): ?>

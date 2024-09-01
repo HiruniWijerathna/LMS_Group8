@@ -1,5 +1,6 @@
-<?php
-session_start();
+<?php 
+
+include 'header3.php'; 
 require 'db.php';
 
 // Redirect if user is not logged in
@@ -86,8 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('image/book12.jpg');
             background-size: cover;
+            background-image: url('image/book12.jpg');
             background-position: center;
             margin: 0;
             padding: 0;
@@ -99,11 +100,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
         }
         .profile-container {
             background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             width: 100%;
             max-width: 600px;
+            margin-top: 300px;
+           margin-left:300px;
+        
         }
         .profile-form label {
             display: block;

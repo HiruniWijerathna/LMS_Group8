@@ -1,9 +1,15 @@
 <?php 
+include 'header3.php'; 
 require 'db.php';
 
 // Fetch all books from the database
-$stmt = $pdo->query("SELECT * FROM books");
-$books = $stmt->fetchAll();
+try {
+    $stmt = $pdo->query("SELECT * FROM books");
+    $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    $books = []; // Default to an empty array on error
+    error_log($e->getMessage()); // Log the error for debugging
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,12 +29,16 @@ $books = $stmt->fetchAll();
         }
         
         .book-container {
-            margin-left: 270px;
-            padding: 20px;
+            margin-top: 30px;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
+            flex-grow: 1;
+            padding: 40px;
+            background-color: #fff;
+            padding-left: 22%;
+            padding-top: 10%;
         }
         .book-card {
             border: 1px solid #ddd;
@@ -102,7 +112,6 @@ $books = $stmt->fetchAll();
 </head>
 <body>
 <div class="sidebar-container">
-
     <!-- Navigation Menu -->
     <nav class="nav-menu">
         <ul>
@@ -113,7 +122,7 @@ $books = $stmt->fetchAll();
             </li>
         </ul>
         <ul>
-        <li class="active">
+            <li class="active">
                 <a href="all_books.php">
                     <span class="icon">📚</span> View All Books
                 </a>
@@ -145,27 +154,27 @@ $books = $stmt->fetchAll();
     </nav>
 </div>
 
-    <div class="book-container">
-        <?php if (count($books) > 0): ?>
-            <?php foreach ($books as $book): ?>
-            <div class="book-card">
-                <?php if (!empty($book['image_path'])): ?>
-                    <img src="<?php echo htmlspecialchars($book['image_path']); ?>" alt="Book Image">
-                <?php endif; ?>
-                <h2><?php echo htmlspecialchars($book['title']); ?></h2>
-                <p><strong>Keywords:</strong> <?php echo htmlspecialchars($book['keywords']); ?></p>
-                <div class="buttons">
-                    <a href="view_book.php?id=<?php echo $book['id']; ?>" target="_blank">View</a>
-                    <form action="add_to_library.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                        <button type="submit">Add to Library</button>
-                    </form>
-                </div>
+<div class="book-container">
+    <?php if (is_array($books) && count($books) > 0): ?>
+        <?php foreach ($books as $book): ?>
+        <div class="book-card">
+            <?php if (!empty($book['image_path'])): ?>
+                <img src="<?php echo htmlspecialchars($book['image_path']); ?>" alt="Book Image">
+            <?php endif; ?>
+            <h2><?php echo htmlspecialchars($book['title']); ?></h2>
+            <p><strong>Keywords:</strong> <?php echo htmlspecialchars($book['keywords']); ?></p>
+            <div class="buttons">
+                <a href="view_book.php?id=<?php echo $book['id']; ?>" target="_blank">View</a>
+                <form action="add_to_library.php" method="POST" style="display:inline;">
+                    <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                    <button type="submit">Add to Library</button>
+                </form>
             </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <div class="book-card">No books available.</div>
-        <?php endif; ?>
-    </div>
+        </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="book-card">No books available.</div>
+    <?php endif; ?>
+</div>
 </body>
 </html>
