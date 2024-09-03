@@ -30,7 +30,7 @@
             text-align: center;
             margin-top: 50px; /* Adjust top margin as needed */
             font-size: 3rem; /* Adjust font size */
-            color: #ffffff; /* White text color for contrast */
+            color: White; /* White text color for contrast */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
         }
 

@@ -120,3 +120,25 @@ input[type="email"], input[type="password"] {
 .forgot-password:hover {
     text-decoration: none;
 }
+
+/* Add this to your login.css */
+
+.home-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black; /* Or any color you prefer for the text */
+    font-size: 16px; /* Adjust size as needed */
+    padding: 5px;
+
+}
+
+.home-icon {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    margin-right: 5px; /* Space between icon and text */
+}
+
+.home-button:hover {
+    text-decoration: underline; /* Adds underline on hover */
+}

@@ -43,6 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/register.css"> <!-- Link to the CSS file -->
 </head>
 <body>
+       <!-- Home Button with Icon -->
+       <div style="position: absolute; top: 10px; left: 10px;" class="home-button">
+        <a href="index.php" class="home-button">
+            <img src="image/home_icon.png" alt="Home Icon" class="home-icon">
+            
+        </a>
+    </div>
+    
     <div class="login-container">
         <div class="image-container">
             <img src="image/book6.jpg" alt="Book Image" style="width: 100%; height: 100%;">

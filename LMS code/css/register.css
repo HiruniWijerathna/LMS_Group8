@@ -110,3 +110,22 @@ input[type="text"], input[type="email"], input[type="password"] {
 .login-link:hover {
     text-decoration: none;
 }
+.home-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black; /* Or any color you prefer for the text */
+    font-size: 16px; /* Adjust size as needed */
+    padding: 5px;
+
+}
+
+.home-icon {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    margin-right: 5px; /* Space between icon and text */
+}
+
+.home-button:hover {
+    text-decoration: underline; /* Adds underline on hover */
+}

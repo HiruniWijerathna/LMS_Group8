@@ -14,9 +14,9 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="home.php">Home</a></li>
-                <li><a href="about.php">About</a></li>
                 
-                <li><a href="contact.php">Contact</a></li>
+                
+                
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
                     <li><a href="profile.php">Profile</a></li>
                     <li><a href="logout.php">Logout</a></li>
