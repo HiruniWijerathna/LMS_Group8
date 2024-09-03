@@ -31,23 +31,7 @@
             z-index: 1000;
         }
 
-        
-        .brand {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-        
-            color: #ecf0f1;
-            margin-top: 5px;
-            text-align: center;
-            margin-left: 10%;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            font-size: 24px; /* Smaller font size */
-            font-weight: bold;
-            color: red; /* Change color to red */
-            -webkit-text-stroke: 1px black; /* Smaller text stroke */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Lighter shadow effect */
-        }
+     
         .logo img {
             height: 40px; /* Adjust logo size */
         }
