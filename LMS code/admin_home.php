@@ -305,7 +305,7 @@ $totalBorrowed = $stmt->fetchAll();
                 <p>Upload new books to the library</p>
             </div>
             <div class="action-card" onclick="location.href='admin_view_book.php';">
-                <h3>View Books</h3>
+                <h3>Manage Books</h3>
                 <p>View and manage existing books</p>
             </div>
             <div class="action-card" onclick="location.href='manage_users.php';">
