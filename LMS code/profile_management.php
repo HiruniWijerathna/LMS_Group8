@@ -57,14 +57,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
         'user_id' => $user_id
     ]);
 
-    // Update or insert profile data
-    $stmt = $pdo->prepare("
-        INSERT INTO profiles (user_id, mobile_number, profile_picture)
-        VALUES (:user_id, :mobile_number, :profile_picture)
-        ON DUPLICATE KEY UPDATE
-            mobile_number = VALUES(mobile_number),
-            profile_picture = VALUES(profile_picture)
-    ");
+    // Check if profile already exists
+    $stmt = $pdo->prepare("SELECT * FROM profiles WHERE user_id = :user_id");
+    $stmt->execute(['user_id' => $user_id]);
+    $profileExists = $stmt->fetch();
+
+    if ($profileExists) {
+        // Update existing profile
+        $stmt = $pdo->prepare("
+            UPDATE profiles
+            SET mobile_number = :mobile_number, profile_picture = :profile_picture
+            WHERE user_id = :user_id
+        ");
+    } else {
+        // Insert new profile
+        $stmt = $pdo->prepare("
+            INSERT INTO profiles (user_id, mobile_number, profile_picture)
+            VALUES (:user_id, :mobile_number, :profile_picture)
+        ");
+    }
+
+    // Execute the query
     $stmt->execute([
         'user_id' => $user_id,
         'mobile_number' => $mobile_number,
@@ -106,8 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
             width: 100%;
             max-width: 600px;
             margin-top: 300px;
-           margin-left:300px;
-        
+            margin-left: 300px;
         }
         .profile-form label {
             display: block;
